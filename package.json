@@ -1,0 +1,43 @@
+{
+  "name": "gitflix",
+  "version": "0.1.0",
+  "description": "Watch your git history like a movie — in your terminal, or as a shareable web page.",
+  "type": "module",
+  "bin": {
+    "gitflix": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*"
+  ],
+  "engines": {
+    "node": ">=18.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test dist/gitflix.test.js",
+    "start": "node dist/cli.js",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "git",
+    "history",
+    "visualization",
+    "replay",
+    "cli",
+    "terminal",
+    "tui",
+    "timeline",
+    "gource"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}
