@@ -62,7 +62,7 @@ npx gitflix --html index.html
 ```
 
 Commit `index.html` to a `gh-pages` branch, and your project's whole history is one link away.
-Got a cool one? Post it in [Show and tell](../../discussions) — we'd love to see it.
+Got a cool one? Post it in [Show and tell](https://github.com/rexyang54/gitflix/discussions/categories/show-and-tell) — we'd love to see it.
 
 ## Use as a library
 

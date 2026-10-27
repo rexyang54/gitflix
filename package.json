@@ -40,5 +40,13 @@
   "devDependencies": {
     "@types/node": "^26.6.5",
     "typescript": "^7.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rexyang54/gitflix.git"
+  },
+  "homepage": "https://github.com/rexyang54/gitflix#readme",
+  "bugs": {
+    "url": "https://github.com/rexyang54/gitflix/issues"
   }
 }
