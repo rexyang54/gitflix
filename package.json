@@ -1,6 +1,6 @@
 {
   "name": "gitflix",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Watch your git history like a movie — in your terminal, or as a shareable web page.",
   "type": "module",
   "bin": {
