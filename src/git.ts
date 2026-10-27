@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { statSync } from 'node:fs';
 import { basename } from 'node:path';
 
 export interface FileChange {
@@ -42,8 +43,25 @@ function git(cwd: string, args: string[], input?: string): string {
   return r.stdout;
 }
 
+/** Resolves the repository's name, with errors that tell first-time users what to do. */
 export function repoName(cwd: string): string {
-  return basename(git(cwd, ['rev-parse', '--show-toplevel']).trim());
+  if (!statSync(cwd, { throwIfNoEntry: false })?.isDirectory()) throw new Error(`no such directory: ${cwd}`);
+  let top: string;
+  try {
+    top = git(cwd, ['rev-parse', '--show-toplevel']).trim();
+  } catch (err) {
+    if (/not a git repository/i.test((err as Error).message)) {
+      throw new Error(
+        `${cwd} is not a git repository.\n\n` +
+          '  Run gitflix inside a repo, or pass one:\n' +
+          '    npx gitflix ~/code/my-project\n',
+      );
+    }
+    throw err;
+  }
+  const head = spawnSync('git', ['rev-parse', '--verify', '-q', 'HEAD'], { cwd });
+  if (head.status !== 0) throw new Error(`${basename(top)} has no commits yet — make one and come back for the premiere 🍿`);
+  return basename(top);
 }
 
 export function readHistory(opts: ReadOptions): Commit[] {

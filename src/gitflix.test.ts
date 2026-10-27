@@ -5,7 +5,7 @@ import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import vm from 'node:vm';
-import { parseLog, parseRename, readBaseline, readHistory } from './git.js';
+import { parseLog, parseRename, readBaseline, readHistory, repoName } from './git.js';
 import { Replay } from './replay.js';
 import { renderHtml } from './html.js';
 import { fit, strWidth, truncate, truncateLeft } from './term.js';
@@ -133,6 +133,18 @@ test('readBaseline seeds a partial replay with the earlier codebase', () => {
     r.seek(0);
     assert.equal(r.totalLines, 5);
     assert.deepEqual(readBaseline({ cwd: dir }, readHistory({ cwd: dir })[0]), []);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('repoName explains common mistakes', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'gitflix-'));
+  try {
+    assert.throws(() => repoName(join(dir, 'missing')), /no such directory/);
+    assert.throws(() => repoName(dir), /is not a git repository[\s\S]*npx gitflix/);
+    execFileSync('git', ['init', '-q'], { cwd: dir });
+    assert.throws(() => repoName(dir), /has no commits yet/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
