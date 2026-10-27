@@ -22,7 +22,8 @@
     "build": "tsc",
     "test": "tsc && node --test dist/gitflix.test.js",
     "start": "node dist/cli.js",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "demo": "npm run build && vhs docs/demo.tape && gifsicle -O3 --resize-width 1000 --lossy=80 --colors 64 -b docs/demo.gif"
   },
   "keywords": [
     "git",

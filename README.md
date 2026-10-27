@@ -11,7 +11,7 @@ or exported as a single web page you can share anywhere.
 npx gitflix
 ```
 
-<!-- TODO: record docs/demo.gif with `vhs` and embed it here — it's the most important line of this README. -->
+<img src="docs/demo.gif" alt="gitflix replaying 3,000 commits of Homebrew in the terminal" width="900">
 
 [![npm](https://img.shields.io/npm/v/gitflix?color=e50914)](https://www.npmjs.com/package/gitflix)
 ![zero dependencies](https://img.shields.io/badge/dependencies-0-success)
@@ -89,7 +89,7 @@ always agree.
 - [ ] Treemap view in the HTML player
 - [ ] Remote repos: `npx gitflix github.com/user/repo`
 
-Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). To re-record the demo GIF: `npm run demo` (needs `vhs` and `gifsicle`).
 
 ## License
 
